@@ -1,1 +1,32 @@
-﻿<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+﻿<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+
+<div ng-app="App" ng-controller="MainC">
+
+<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+
+<iframe id="youtube" 
+        width="560" 
+        height="315"
+        ng-src= "http://www.youtube.com/embed/dwqDGLQIINY"
+        frameborder="0" 
+        allowfullscreen=""
+>
+</iframe>
+    
+<script>
+var jq = $.noConflict();        
+var myApp = angular.module('App', []);
+myApp.controller('MainC', ['$scope', function ($scope) {
+    $scope.data = "http://www.youtube.com/embed/dwqDGLQIINY?dummy=" + (new Date()).getTime();
+
+    $scope.refresh = function(link) {
+        jq('#youtube').attr('src', link );
+    };
+
+    $scope.refresh($scope.data);    
+}]);
+
+</script>
+</div>
